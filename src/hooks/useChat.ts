@@ -27,7 +27,7 @@ export function useChat(): UseChatReturn {
         setIsLoading(true);
 
         try {
-            const response = await fetch('/chat', {
+            const response = await fetch('https://chat-api.artfricastudio.com/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
