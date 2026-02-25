@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { Bot, Trash2, X } from 'lucide-react';
+import { Bot, Trash2, X, FileText } from 'lucide-react';
+
+const KB_PDF_URL = '/kb/Cybersecurity-Amendment-Draft-Bill-2025.pdf';
 import { useChat } from '../../hooks/useChat';
 import { ChatInput } from './ChatInput';
 import { ChatMessage } from './ChatMessage';
@@ -37,7 +39,16 @@ export function ChatContainer() {
                     </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
+                    <a
+                        href={KB_PDF_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 text-muted-foreground hover:text-primary hover:bg-primary/10 rounded-full transition-colors"
+                        title="View Source Document"
+                    >
+                        <FileText className="h-5 w-5" />
+                    </a>
                     <button
                         onClick={clearChat}
                         className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full transition-colors"
@@ -75,6 +86,15 @@ export function ChatContainer() {
                                 <span>I will not be able to provide appropriate answers to questions outside this specific legislative scope.</span>
                             </div>
                         </div>
+                        <a
+                            href={KB_PDF_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 ring-1 ring-primary/20 text-sm font-semibold transition-all hover:shadow-md mb-6 group"
+                        >
+                            <FileText className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                            Read the Source Document
+                        </a>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
                             <button
                                 onClick={() => sendMessage("What does the bill say about Artificial Intelligence?")}
