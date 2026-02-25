@@ -10,10 +10,7 @@ interface SourceListProps {
 export function SourceList({ sources }: SourceListProps) {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    // Filter sources with score >= 0.30 to accommodate new API scoring
-    const filteredSources = sources.filter((source) => source.score >= 0.30);
-
-    if (filteredSources.length === 0) {
+    if (!sources || sources.length === 0) {
         return null;
     }
 
@@ -25,7 +22,7 @@ export function SourceList({ sources }: SourceListProps) {
             >
                 {isExpanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
                 <BookOpen className="h-3 w-3 mr-1" />
-                {filteredSources.length} Source{filteredSources.length !== 1 ? 's' : ''}
+                {sources.length} Source{sources.length !== 1 ? 's' : ''}
             </button>
 
             <AnimatePresence>
@@ -38,7 +35,7 @@ export function SourceList({ sources }: SourceListProps) {
                         className="overflow-hidden"
                     >
                         <div className="flex flex-col gap-2 pt-2 pb-1">
-                            {filteredSources.map((source, index) => {
+                            {sources.map((source, index) => {
                                 const percentage = Math.round(source.score * 100);
                                 return (
                                     <div

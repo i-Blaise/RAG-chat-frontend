@@ -7,8 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/chat': {
-        target: 'http://0.0.0.0:8000',
+        target: 'https://chat-api.artfricastudio.com',
         changeOrigin: true,
+        secure: true,
       },
     },
   },
