@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { SendHorizontal, Paperclip, Mic, Image as ImageIcon } from 'lucide-react';
+import { SendHorizontal } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 interface ChatInputProps {
@@ -49,19 +49,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
                         className="min-h-[44px] w-full resize-none bg-transparent px-3 py-2.5 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 max-h-[200px]"
                         disabled={disabled}
                     />
-                    <div className="flex items-center justify-between px-2 pb-1">
-                        <div className="flex items-center gap-2">
-                            <button className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-md hover:bg-muted" title="Upload File (Demo)">
-                                <Paperclip className="h-4 w-4" />
-                            </button>
-                            <button className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-md hover:bg-muted" title="Generate Image (Demo)">
-                                <ImageIcon className="h-4 w-4" />
-                            </button>
-                            <button className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded-md hover:bg-muted" title="Voice Input (Demo)">
-                                <Mic className="h-4 w-4" />
-                            </button>
-                        </div>
-
+                    <div className="flex items-center justify-end px-2 pb-1">
                         <button
                             onClick={() => handleSubmit()}
                             disabled={!input.trim() || disabled}

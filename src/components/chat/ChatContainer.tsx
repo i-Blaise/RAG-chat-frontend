@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Bot, Trash2 } from 'lucide-react';
+import { Bot, Trash2, X } from 'lucide-react';
 import { useChat } from '../../hooks/useChat';
 import { ChatInput } from './ChatInput';
 import { ChatMessage } from './ChatMessage';
@@ -18,7 +18,7 @@ export function ChatContainer() {
     }, [messages, isLoading]);
 
     return (
-        <div className="flex flex-col h-screen max-w-4xl mx-auto bg-background shadow-2xl border-x overflow-hidden relative">
+        <div className="flex flex-col h-full w-full mx-auto bg-background shadow-2xl relative">
             {/* Header */}
             <header className="flex items-center justify-between px-6 py-4 border-b bg-background/95 backdrop-blur z-10 sticky top-0 shadow-sm">
                 <div className="flex items-center gap-3">
@@ -37,13 +37,22 @@ export function ChatContainer() {
                     </div>
                 </div>
 
-                <button
-                    onClick={clearChat}
-                    className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full transition-colors"
-                    title="Clear Chat"
-                >
-                    <Trash2 className="h-5 w-5" />
-                </button>
+                <div className="flex items-center gap-2">
+                    <button
+                        onClick={clearChat}
+                        className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full transition-colors"
+                        title="Clear Chat"
+                    >
+                        <Trash2 className="h-5 w-5" />
+                    </button>
+                    <button
+                        onClick={() => window.history.back()}
+                        className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-full transition-colors"
+                        title="Close Chat"
+                    >
+                        <X className="h-5 w-5" />
+                    </button>
+                </div>
             </header>
 
             {/* Messages Area */}
