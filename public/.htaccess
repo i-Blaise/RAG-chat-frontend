@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Proxy requests for /chat to the external API
+  # NOTE: To use the [P] flag, you must have mod_proxy and mod_proxy_http enabled on your Apache server!
+  RewriteRule ^chat$ https://chat-api.artfricastudio.com/chat [P,L]
+
+  # For any files or directories that don't exist, route to index.html (SPA routing)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [QSA,L]
+</IfModule>
