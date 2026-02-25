@@ -10,8 +10,8 @@ interface SourceListProps {
 export function SourceList({ sources }: SourceListProps) {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    // Filter sources with score >= 0.57
-    const filteredSources = sources.filter((source) => source.score >= 0.57);
+    // Filter sources with score >= 0.30 to accommodate new API scoring
+    const filteredSources = sources.filter((source) => source.score >= 0.30);
 
     if (filteredSources.length === 0) {
         return null;

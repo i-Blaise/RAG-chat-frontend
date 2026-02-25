@@ -18,18 +18,21 @@ export function ChatContainer() {
     }, [messages, isLoading]);
 
     return (
-        <div className="flex flex-col h-screen max-w-4xl mx-auto bg-background shadow-xl border-x overflow-hidden">
+        <div className="flex flex-col h-screen max-w-4xl mx-auto bg-background shadow-2xl border-x overflow-hidden relative">
             {/* Header */}
-            <header className="flex items-center justify-between px-6 py-4 border-b bg-background/95 backdrop-blur z-10">
-                <div className="flex items-center gap-2">
-                    <div className="p-2 bg-primary rounded-lg text-primary-foreground">
+            <header className="flex items-center justify-between px-6 py-4 border-b bg-background/95 backdrop-blur z-10 sticky top-0 shadow-sm">
+                <div className="flex items-center gap-3">
+                    <div className="p-2.5 bg-primary/10 rounded-xl text-primary ring-1 ring-primary/20 shadow-sm">
                         <Bot className="h-6 w-6" />
                     </div>
                     <div>
-                        <h1 className="font-semibold text-lg leading-none">AI Assistant</h1>
-                        <span className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                            Online
+                        <h1 className="font-bold text-lg leading-none tracking-tight">CyberLaw Assistant</h1>
+                        <span className="text-xs font-medium text-muted-foreground flex items-center gap-1.5 mt-1.5">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                            </span>
+                            Cybersecurity Bill 2025
                         </span>
                     </div>
                 </div>
@@ -46,9 +49,39 @@ export function ChatContainer() {
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth">
                 {messages.length === 0 ? (
-                    <div className="h-full flex flex-col items-center justify-center text-center text-muted-foreground p-8 opacity-50">
-                        <Bot className="h-16 w-16 mb-4 stroke-1" />
-                        <p className="text-lg font-medium">How can I help you today?</p>
+                    <div className="h-full flex flex-col items-center justify-center text-center p-8 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
+                        <div className="bg-primary/10 p-4 rounded-2xl mb-6 ring-1 ring-primary/20 shadow-sm text-primary">
+                            <Bot className="h-10 w-10" />
+                        </div>
+                        <h2 className="text-2xl md:text-3xl font-bold mb-3 tracking-tight text-foreground">
+                            Cybersecurity (Amendment) Draft Bill 2025
+                        </h2>
+                        <div className="text-muted-foreground mb-8 leading-relaxed max-w-xl flex flex-col gap-4">
+                            <p>
+                                I am a specialized assistant trained strictly on the new Ghana Cybersecurity amendment provisions.
+                                Ask me about AI regulations, licensing, or enforcement powers.
+                            </p>
+                            <div className="bg-destructive/5 text-destructive border border-destructive/20 rounded-lg p-3 text-sm text-left flex gap-3 items-start">
+                                <span className="text-lg">ℹ️</span>
+                                <span>I will not be able to provide appropriate answers to questions outside this specific legislative scope.</span>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-lg">
+                            <button
+                                onClick={() => sendMessage("What does the bill say about Artificial Intelligence?")}
+                                className="p-4 bg-background hover:bg-muted/50 transition-colors rounded-xl border border-border/60 shadow-sm text-sm text-left group"
+                            >
+                                <p className="font-semibold mb-1 text-foreground group-hover:text-primary transition-colors">Definition & Scope</p>
+                                <p className="text-muted-foreground line-clamp-2">"What does the bill say about Artificial Intelligence?"</p>
+                            </button>
+                            <button
+                                onClick={() => sendMessage("What are the penalties for non-compliance?")}
+                                className="p-4 bg-background hover:bg-muted/50 transition-colors rounded-xl border border-border/60 shadow-sm text-sm text-left group"
+                            >
+                                <p className="font-semibold mb-1 text-foreground group-hover:text-primary transition-colors">Enforcement</p>
+                                <p className="text-muted-foreground line-clamp-2">"What are the penalties for non-compliance?"</p>
+                            </button>
+                        </div>
                     </div>
                 ) : (
                     messages.map((msg) => (
